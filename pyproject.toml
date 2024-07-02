@@ -1,6 +1,6 @@
 [project]
 name = "safa-sdk-python"
-version = "0.0.1"
+version = "0.0.2"
 description = "A Python SDK wrapper for a SAFA REST API"
 authors = [
     { name = "Alberto Rodriguez", email = "alberto@safa.ai.com" }

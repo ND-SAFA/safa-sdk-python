@@ -1,9 +1,11 @@
 import os
+import sys
 
 from dotenv import load_dotenv
 
-from project_store import ProjectStore
-from safa_client import Safa
+sys.path.append("src/safa")
+from safa.safa_client import Safa
+from safa.safa_store import SafaStore
 
 if __name__ == '__main__':
     load_dotenv()
@@ -12,7 +14,7 @@ if __name__ == '__main__':
     PASSWORD = os.environ["PASSWORD"]
     CACHE_FILE_PATH = os.path.expanduser(os.environ["CACHE_FILE_PATH"])
 
-    project_store = ProjectStore(CACHE_FILE_PATH)
+    project_store = SafaStore(CACHE_FILE_PATH)
     client = Safa(store=project_store)
     client.login(USERNAME, PASSWORD)
 

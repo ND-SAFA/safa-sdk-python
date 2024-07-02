@@ -1,12 +1,12 @@
-from .base_client import BaseClient
-from .project_store import ProjectStore
+from safa.base_client import BaseClient
+from safa.safa_store import SafaStore
 
 
 class Safa:
     BASE_URL = "https://api.safa.ai"
     TOKEN = 'SAFA-TOKEN'
 
-    def __init__(self, store: ProjectStore = None):
+    def __init__(self, store: SafaStore = None):
         self.client = BaseClient(Safa.BASE_URL)
         self.project_store = store
 
@@ -24,11 +24,11 @@ class Safa:
         print("Login successful.")
 
     def get_project_data(self, version_id: str, nocache: bool = False):
-        if not nocache and self.project_store.has_project(version_id):
+        if not nocache and self.project_store and self.project_store.has_project(version_id):
             project_data = self.project_store.get_project(version_id)
         else:
             project_data = self.client.get(f"projects/versions/{version_id}")
-            if not nocache:
+            if not nocache and self.project_store:
                 self.project_store.store_project(version_id, project_data)
         print(f"Retrieved project: {version_id}")
         return project_data
