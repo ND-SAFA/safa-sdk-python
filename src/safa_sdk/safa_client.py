@@ -1,7 +1,7 @@
 from typing import List
 
-from safa.base_client import BaseClient
-from safa.safa_store import SafaStore
+from safa_sdk.base_client import BaseClient
+from safa_sdk.safa_store import SafaStore
 
 
 class Safa:

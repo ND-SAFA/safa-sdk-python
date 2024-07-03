@@ -1,7 +1,7 @@
 import json
 from typing import Dict
 
-from safa.util import read_json_file
+from safa_sdk.util import read_json_file
 
 ProjectData = Dict
 

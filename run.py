@@ -3,9 +3,9 @@ import sys
 
 from dotenv import load_dotenv
 
-sys.path.append("src/safa")
-from safa.safa_client import Safa
-from safa.safa_store import SafaStore
+sys.path.append("src/safa_sdk")
+from safa_sdk.safa_client import Safa
+from safa_sdk.safa_store import SafaStore
 
 if __name__ == '__main__':
     load_dotenv()
