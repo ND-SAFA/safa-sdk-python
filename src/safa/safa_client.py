@@ -1,3 +1,5 @@
+from typing import List
+
 from safa.base_client import BaseClient
 from safa.safa_store import SafaStore
 
@@ -32,3 +34,19 @@ class Safa:
                 self.project_store.store_project(version_id, project_data)
         print(f"Retrieved project: {version_id}")
         return project_data
+
+    def search_by_prompt(self, query: str, version_id: str, search_types: List[str]) -> List[str]:
+        """
+        Searches artifacts against query.
+        :param query: The prompt used to search for related artifacts.
+        :param version_id: ID of the version of the project to search.
+        :param search_types: The types of artifacts to search in.
+        :return: Artifact Ids of related artifacts.
+        """
+        payload = {
+            "mode": "PROMPT",
+            "prompt": query,
+            "searchTypes": search_types
+        }
+        res = self.client.post(f"search/{version_id}", payload)
+        return res["artifactIds"]
