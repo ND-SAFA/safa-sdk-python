@@ -23,7 +23,6 @@ class Safa:
             self.client.set_auth_cookie(auth_token)
             if self.project_store:
                 self.project_store.store_credentials(email, auth_token)
-        print("Login successful.")
 
     def get_project_data(self, version_id: str, nocache: bool = False):
         if not nocache and self.project_store and self.project_store.has_project(version_id):
@@ -32,7 +31,6 @@ class Safa:
             project_data = self.client.get(f"projects/versions/{version_id}")
             if not nocache and self.project_store:
                 self.project_store.store_project(version_id, project_data)
-        print(f"Retrieved project: {version_id}")
         return project_data
 
     def search_by_prompt(self, query: str, version_id: str, search_types: List[str]) -> List[str]:
